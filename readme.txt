@@ -5,7 +5,7 @@ Tags: woocommerce, shopping cart, sales, sell, shop, shopping, store cart, check
 wordpress ecommerce
 Requires at least: 3.6
 Tested up to: 3.8.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,8 +21,16 @@ For example, if you create a product with a title "IPhone 5S Reviews" and you ha
 = Configurable =
 Woocommerce Smart Collection is completely customizable. Among others, you may enable/disable smart collection(s), append with existing categories, choose whether to generate smart category associations from product titles and tags.
 
+From version 1.0.1 onwards, the settings can be overriden for individual products.
+
 = Upcoming Features =
 In the upcoming version we will be adding support for custom product taxonomies. So, keep a look out for the updated version. :)
+
+= Pro Version =
+Their is a pro version of this plugin, coming soon !!
+
+Pro version will give you the power to group products depending upon certain conditions (e.g. all products that have "mobile" in their title and cost less than $100). When you create new products that match the conditions, they automatically get added to that group. 
+
 
 = Feedback =
 All we want is some love. If you did not like this plugin or if it is buggy, please give us a shout and we will be happy to fix the issue/add the feature. If you indeed liked it, please leave a 5/5 rating.  
@@ -55,13 +63,18 @@ Not at this moment. But we are working on it.
 1. Woo Smart Collection settings panel.
 2. Create your product.
 3. Your posts gets automatically assigned to the product categories. 
+4. Individual product smart collection settings.
 
 ==Changelog==
 
 = 1.0.0 =
 * Initial release.
 
+= 1.0.1 =
+* Feature Enhancement - Now the settings can be overriden for individual products.
+
 
 ==Upgrade Notice==
 
-Have fun.
+= 1.0.1 =
+* Feature Enhancement - Now the settings can be overriden for individual products.
