@@ -9,11 +9,48 @@ class DC_Woo_Smart_Collection_Admin {
 		
 		add_action('dc_Woo_Smart_Collection_dualcube_admin_footer', array(&$this, 'dualcube_admin_footer_for_dc_Woo_Smart_Collection'));
 		
+		add_action( 'add_meta_boxes', array(&$this, 'add_custom_meta_boxes') );
+		
 		add_action( 'save_post', array(&$this, 'assign_woo_smart_collection') );
 
 		$this->load_class('settings');
 		$this->settings = new DC_Woo_Smart_Collection_Settings();
 	}
+	
+	/**
+   * WP Samrt Taxonomy settings custom meta options
+   */
+  function add_custom_meta_boxes() {
+    global $DC_Woo_Smart_Collection;
+    
+    // Smart Taxonomy settings
+    add_meta_box( 
+        'woo_smart_collection_options',
+        __( 'WooCommerce Smart Collection', $DC_Woo_Smart_Collection->text_domain ),
+        array(&$this, 'set_woo_smart_collection_options'),
+        'product', 'normal', 'high'
+    );
+    
+  }
+  
+  function set_woo_smart_collection_options($product) {
+    global $DC_Woo_Smart_Collection;
+    
+    $smart_cat_settings = get_post_meta($product->ID, '_smart_cat_settings', true);
+    if(!$smart_cat_settings) $smart_cat_settings = get_Woo_Smart_Collection_settings('', 'dc_WC_SC_general');
+    
+    echo '<table>';
+    $settings_options = array(
+                             "placeholder" => array('type' => 'hidden', 'name' => 'smart_cat_settings[placeholder]', 'value' => 'placeholder'),
+                             "is_enable" => array('label' => __('Enable Smart Category', $DC_Woo_Smart_Collection->text_domain), 'type' => 'checkbox', 'name' => 'smart_cat_settings[is_enable]', 'value' => 'Enable', 'dfvalue' => $smart_cat_settings['is_enable']),
+                             "is_append" => array('label' => __('Append with existing smart categories', $DC_Woo_Smart_Collection->text_domain), 'type' => 'checkbox', 'name' => 'smart_cat_settings[is_append]', 'value' => 'Append', 'dfvalue' => $smart_cat_settings['is_append'], 'hints' => __('If unchecked will replace existing smart categories', $DC_Woo_Smart_Collection->text_domain)),
+                             "is_title" => array('label' => __('Generate Smart Category from Post Title', $DC_Woo_Smart_Collection->text_domain), 'type' => 'checkbox', 'name' => 'smart_cat_settings[is_title]', 'value' => 'Title', 'dfvalue' => $smart_cat_settings['is_title']),
+                             "is_tag" => array('label' => __('Generate Smart Category from Post Tags', $DC_Woo_Smart_Collection->text_domain), 'type' => 'checkbox', 'name' => 'smart_cat_settings[is_tag]', 'value' => 'Tag', 'dfvalue' => $smart_cat_settings['is_tag'])
+                             );
+    
+    $DC_Woo_Smart_Collection->dc_wp_fields->dc_generate_form_field($settings_options, array('in_table' => true));
+    echo '</table>';
+  }
 	
 	public function assign_woo_smart_collection($product_id) {
 	  
@@ -28,7 +65,13 @@ class DC_Woo_Smart_Collection_Admin {
     if(count($product_categories) == 0)
       return;
     
-    $smart_cat_settings = get_Woo_Smart_Collection_settings('', 'dc_WC_SC_general');
+    $smart_cat_settings = $_POST['smart_cat_settings'];
+    if(!$smart_cat_settings) $smart_cat_settings = get_Woo_Smart_Collection_settings('', 'dc_WC_SC_general');
+    
+    update_post_meta($product_id, '_smart_cat_settings', $smart_cat_settings);
+    
+    $old_smart_cats = (get_post_meta($product_id, '_smart_cats', true)) ? get_post_meta($product_id, '_smart_cats', true) : array();
+    if(!empty($old_smart_cats)) wp_remove_object_terms( $product_id, $old_smart_cats, 'product_cat' );
     
     if(!$smart_cat_settings['is_enable'])
       return;
@@ -63,8 +106,6 @@ class DC_Woo_Smart_Collection_Admin {
     if(!empty($smart_cats)) {
       $smart_cats = array_map('intval', $smart_cats);
       $smart_cats = array_unique( $smart_cats );
-      $old_smart_cats = (get_post_meta($product_id, '_smart_cats', true)) ? get_post_meta($product_id, '_smart_cats', true) : array();
-      if(!empty($old_smart_cats)) wp_remove_object_terms( $product_id, $old_smart_cats, 'product_cat' );
       
       if($smart_cat_settings['is_append']) {
         $smart_cats = array_merge((array)$smart_cats, (array)$old_smart_cats);
@@ -104,7 +145,7 @@ class DC_Woo_Smart_Collection_Admin {
 		$screen = get_current_screen();
 		
 		// Enqueue admin script and stylesheet from here
-		if (in_array( $screen->id, array( 'toplevel_page_dc-WC-SC-setting-admin' ))) :   
+		if (in_array( $screen->id, array( 'toplevel_page_dc-WC-SC-setting-admin', 'product' ))) :   
 		  $DC_Woo_Smart_Collection->library->load_qtip_lib();
 		  $DC_Woo_Smart_Collection->library->load_upload_lib();
 		  $DC_Woo_Smart_Collection->library->load_colorpicker_lib();
