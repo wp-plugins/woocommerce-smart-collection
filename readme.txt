@@ -31,7 +31,7 @@ There is a [Pro version](http://plugins.dualcube.com/product/woocommerce-smart-c
 
 Pro version will give you the power to group products depending upon certain conditions (e.g. all products that have "mobile" in their title and cost less than $100). When you create new products that match the conditions, they automatically get added to that group. 
 
-*[Visit Pro version](http://plugins.dualcube.com/product/woocommerce-smart-collection-pro/ "Visit Pro version")*
+[Visit Pro version](http://plugins.dualcube.com/product/woocommerce-smart-collection-pro/ "Visit Pro version")
 
 
 = Feedback =
