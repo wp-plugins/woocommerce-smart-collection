@@ -5,7 +5,7 @@ Tags: woocommerce, shopping cart, sales, sell, shop, shopping, store cart, check
 wordpress ecommerce
 Requires at least: 3.6
 Tested up to: 3.8.1
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,9 +27,11 @@ From version 1.0.1 onwards, the settings can be overriden for individual product
 In the upcoming version we will be adding support for custom product taxonomies. So, keep a look out for the updated version. :)
 
 = Pro Version =
-Their is a pro version of this plugin, coming soon !!
+There is a [Pro version](http://plugins.dualcube.com/product/woocommerce-smart-collection-pro/ "Pro version") of this plugin also available.
 
 Pro version will give you the power to group products depending upon certain conditions (e.g. all products that have "mobile" in their title and cost less than $100). When you create new products that match the conditions, they automatically get added to that group. 
+
+`[Visit Pro version](http://plugins.dualcube.com/product/woocommerce-smart-collection-pro/ "Visit Pro version")`
 
 
 = Feedback =
@@ -73,8 +75,14 @@ Not at this moment. But we are working on it.
 = 1.0.1 =
 * Feature Enhancement - Now the settings can be overriden for individual products.
 
+= 1.0.2 =
+* Minor code tweaks.
+
 
 ==Upgrade Notice==
 
 = 1.0.1 =
 * Feature Enhancement - Now the settings can be overriden for individual products.
+
+= 1.0.2 =
+* Minor code tweaks.

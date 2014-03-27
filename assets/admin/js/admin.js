@@ -73,6 +73,8 @@ jQuery(document).ready(function($) {
       multi_input_holder.find('.multi_input_block:last').append($(this));
       if(multi_input_holder.find('.multi_input_block').length > 1) multi_input_holder.find('.remove_multi_input_block').css('display', 'block');
       multi_input_holder.data('length', multi_input_blockCount);
+      
+      $('body').trigger('add_multi_input_block_clicked');
     });
     
     multi_input_holder.find('.remove_multi_input_block').click(function() {
@@ -81,6 +83,8 @@ jQuery(document).ready(function($) {
       multi_input_holder.find('.add_multi_input_block').remove();
       multi_input_holder.find('.multi_input_block:last').append(addEle);
       if(multi_input_holder.find('.multi_input_block').length == 1) multi_input_holder.find('.remove_multi_input_block').css('display', 'none');
+      
+      $('body').trigger('remove_multi_input_block_clicked');
     });
   });
 });

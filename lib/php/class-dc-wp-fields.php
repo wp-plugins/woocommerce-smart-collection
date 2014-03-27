@@ -413,6 +413,7 @@ class DC_WP_Fields {
       for($blockCount = 0; $blockCount < $eleCount; $blockCount++) {
         printf('<div class="multi_input_block">');
         foreach($field['options'] as $optionKey => $optionField) {
+          $optionField = $this->check_field_id_name($optionKey, $optionField);
           if(isset($field['value']) && isset($field['value'][$blockCount]) && isset($field['value'][$blockCount][$optionField['name']])) $optionField['value'] = $field['value'][$blockCount][$optionField['name']];
           $optionField['custom_attributes']['name'] = $optionField['name'];
           $optionField['class'] .= ' multi_input_block_element';
