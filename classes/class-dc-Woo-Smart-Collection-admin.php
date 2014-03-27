@@ -50,20 +50,26 @@ class DC_Woo_Smart_Collection_Admin {
     
     $DC_Woo_Smart_Collection->dc_wp_fields->dc_generate_form_field($settings_options, array('in_table' => true));
     echo '</table>';
+    
+    do_action('dc_Woo_Smart_Collection_dualcube_admin_footer');
   }
 	
 	public function assign_woo_smart_collection($product_id) {
 	  
-	  // If this is just a revision, don't send the email.
+	  // If this is just a autosave, don't do anything
+	  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+			return $product_id;
+	  
+	  // If this is just a revision, don't do anything
     if ( wp_is_post_revision( $product_id ) )
-      return;
+      return $product_id;
   
     if( get_post_type($product_id) != 'product' )
-      return;
+      return $product_id;
     
     $product_categories = get_terms( 'product_cat', array( 'hide_empty' => 0 ) );
     if(count($product_categories) == 0)
-      return;
+      return $product_id;
     
     $smart_cat_settings = $_POST['smart_cat_settings'];
     if(!$smart_cat_settings) $smart_cat_settings = get_Woo_Smart_Collection_settings('', 'dc_WC_SC_general');
@@ -74,49 +80,56 @@ class DC_Woo_Smart_Collection_Admin {
     if(!empty($old_smart_cats)) wp_remove_object_terms( $product_id, $old_smart_cats, 'product_cat' );
     
     if(!$smart_cat_settings['is_enable'])
-      return;
+      return $product_id;
     
     $product_title = get_the_title( $product_id );
     $product_tags = wp_get_object_terms( $product_id, 'product_tag', array('fields' => 'all') );
     
     $smart_cats = array();
     
-    // Choose Samrt Cats from Post Title
-    if($smart_cat_settings['is_title']) {
-      foreach($product_categories as $product_category) {
-        if(strpos(strtolower($product_title), strtolower($product_category->name)) !== false) {
-          $smart_cats[] = $product_category->term_id;
+    foreach($product_categories as $product_category) {
+      $woo_collection_default_association = true;
+      $woo_collection_default_association = apply_filters('woo_smart_collection_asso_mode', $woo_collection_default_association, $product_id, $product_category);
+      
+      if($woo_collection_default_association) {
+        // Decide Samrt Cats from Post Title
+        if($smart_cat_settings['is_title']) {
+          if(strpos(strtolower($product_title), strtolower($product_category->name)) !== false) {
+            $smart_cats[] = $product_category->term_id;
+          }
         }
-      }
-    }
-    
-    // Choose Samrt Cats from associated Tags
-    if($smart_cat_settings['is_tag']) {
-      if(!empty($product_tags)) {
-        foreach($product_tags as $product_tag) {
-          foreach($product_categories as $product_category) {
-            if(strtolower($product_category->name) == strtolower($product_tag->name)) {
-              $smart_cats[] = $product_category->term_id;
+        
+        // Decide Samrt Cats from associated Tags
+        if($smart_cat_settings['is_tag']) {
+          if(!empty($product_tags)) {
+            foreach($product_tags as $product_tag) {
+              if(strtolower($product_category->name) == strtolower($product_tag->name)) {
+                $smart_cats[] = $product_category->term_id;
+              }
             }
           }
         }
+      } else {
+        $smart_association = false;
+        $smart_association = apply_filters('woo_smart_collection_asso', $smart_association, $product_id, $product_category);
+        if($smart_association) $smart_cats[] = $product_category->term_id;
       }
     }
     
     if(!empty($smart_cats)) {
       $smart_cats = array_map('intval', $smart_cats);
-      $smart_cats = array_unique( $smart_cats );
       
       if($smart_cat_settings['is_append']) {
         $smart_cats = array_merge((array)$smart_cats, (array)$old_smart_cats);
-        $smart_cats = array_unique( $smart_cats );
       }
-        
+       
+      $smart_cats = array_unique( $smart_cats );
       wp_set_object_terms( $product_id, $smart_cats, 'product_cat', true );
         
       update_post_meta($product_id, '_smart_cats', $smart_cats);
     }
     
+    return $product_id;
 	}
 
 	function load_class($class_name = '') {
@@ -144,8 +157,14 @@ class DC_Woo_Smart_Collection_Admin {
 		global $DC_Woo_Smart_Collection;
 		$screen = get_current_screen();
 		
+		if (in_array( $screen->id, array( 'product' ))) :
+		  $DC_Woo_Smart_Collection->library->load_qtip_lib();
+		  wp_enqueue_style('admin_css',  $DC_Woo_Smart_Collection->plugin_url.'assets/admin/css/admin.css', array(), $DC_Woo_Smart_Collection->version);
+		  wp_enqueue_script('admin_js', $DC_Woo_Smart_Collection->plugin_url.'assets/admin/js/admin.js', array('jquery'), $DC_Woo_Smart_Collection->version, true);
+		endif;
+		
 		// Enqueue admin script and stylesheet from here
-		if (in_array( $screen->id, array( 'toplevel_page_dc-WC-SC-setting-admin', 'product' ))) :   
+		if (in_array( $screen->id, array( 'toplevel_page_dc-WC-SC-setting-admin' ))) :   
 		  $DC_Woo_Smart_Collection->library->load_qtip_lib();
 		  $DC_Woo_Smart_Collection->library->load_upload_lib();
 		  $DC_Woo_Smart_Collection->library->load_colorpicker_lib();
