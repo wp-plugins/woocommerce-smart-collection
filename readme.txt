@@ -5,7 +5,7 @@ Tags: woocommerce, shopping cart, sales, sell, shop, shopping, store cart, check
 wordpress ecommerce
 Requires at least: 3.6
 Tested up to: 3.8.1
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,6 +78,9 @@ Not at this moment. But we are working on it.
 = 1.0.2 =
 * Minor code tweaks.
 
+= 1.0.3 =
+* Minor code tweaks.
+
 
 ==Upgrade Notice==
 
@@ -85,4 +88,7 @@ Not at this moment. But we are working on it.
 * Feature Enhancement - Now the settings can be overriden for individual products.
 
 = 1.0.2 =
+* Minor code tweaks.
+
+= 1.0.3 =
 * Minor code tweaks.
