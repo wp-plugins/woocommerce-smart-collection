@@ -20,9 +20,10 @@ For example, if you create a product with a title "IPhone 5S Reviews" and you ha
 
 = Compatibility =
 The plugin is fully compatible with the recent versions of Wordpress and Woocommerce.
-Compatible with older Wordpress versions, down to 3.0.
-Compatible with Woocommerce 2.0.x and 2.1.x.
-Multilingual Support is included with the plugin and is fully compatible with WPML.
+
+* Compatible with older Wordpress versions, down to 3.0.
+* Compatible with Woocommerce 2.0.x and 2.1.x.
+* Multilingual Support is included with the plugin and is fully compatible with WPML.
 
 = Configurable =
 Woocommerce Smart Collection is completely customizable. Among others, you may enable/disable smart collection(s), append with existing categories, choose whether to generate smart category associations from product titles and tags.
