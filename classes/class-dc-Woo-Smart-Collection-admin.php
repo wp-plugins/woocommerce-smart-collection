@@ -94,7 +94,7 @@ class DC_Woo_Smart_Collection_Admin {
       if($woo_collection_default_association) {
         // Decide Samrt Cats from Post Title
         if($smart_cat_settings['is_title']) {
-          if(strpos(strtolower($product_title), strtolower($product_category->name)) !== false) {
+          if(strpos(strtolower($product_title), wptexturize(strtolower($product_category->name))) !== false) {
             $smart_cats[] = $product_category->term_id;
           }
         }
