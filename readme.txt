@@ -3,9 +3,9 @@ Contributors: Dualcube
 Donate link: http://dualcube.com/
 Tags: woocommerce, shopping cart, sales, sell, shop, shopping, store cart, checkout, commerce, e-commerce,  automatic, blog category, categories, category, collection, collection of posts, group, groups, Post, post collection, post group, posts, smart, smart category, smart collection, smart group, smart grouping, smart taxonomy, Taxonomy
 wordpress ecommerce
-Requires at least: 3.6
-Tested up to: 3.8.1
-Stable tag: 1.0.3
+Requires at least: 3.0
+Tested up to: 3.8.2
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,6 +17,12 @@ The plugin provides an easy way to automatically assign your woocommerece produc
 This plugin will be really helpful if your website has a huge number of products and product categories. The plugin minimizes the effort of manually assigning each and every product to relevant product categories. 
 
 For example, if you create a product with a title "IPhone 5S Reviews" and you have product categories like "IPhone", "Reviews" available, then the product gets automatically assigned to these product categories.
+
+= Compatibility =
+The plugin is fully compatible with the recent versions of Wordpress and Woocommerce.
+Compatible with older Wordpress versions, down to 3.0.
+Compatible with Woocommerce 2.0.x and 2.1.x.
+Multilingual Support is included with the plugin and is fully compatible with WPML.
 
 = Configurable =
 Woocommerce Smart Collection is completely customizable. Among others, you may enable/disable smart collection(s), append with existing categories, choose whether to generate smart category associations from product titles and tags.
@@ -48,7 +54,7 @@ In case you feel compelled to rate this plugin less than 5 stars - please do men
 
 == Frequently Asked Questions ==
 = Does this plugin work with newest WP version and also older versions? =
-Yes, this plugin works really fine up to Wordpress 3.8.1! It is also compatible with older Wordpress versions, down to 3.6.
+Yes, this plugin works really fine up to Wordpress 3.8.2! It is also compatible with older Wordpress versions, down to 3.0.
 
 = Does this plugin work with newest Woocommerce version and also older versions? =
 Yes, this plugin works really fine with Woocommerce 2.1.x! It is also compatible with older versions of woocommerce.
@@ -81,6 +87,9 @@ Not at this moment. But we are working on it.
 = 1.0.3 =
 * Minor code tweaks.
 
+= 1.0.4 =
+* Bug Fix - Fixed matching of special characters in product title.
+
 
 ==Upgrade Notice==
 
@@ -92,3 +101,6 @@ Not at this moment. But we are working on it.
 
 = 1.0.3 =
 * Minor code tweaks.
+
+= 1.0.4 =
+* Bug Fix - Fixed matching of special characters in product title.
