@@ -4,8 +4,8 @@ Donate link: http://dualcube.com/
 Tags: woocommerce, shopping cart, sales, sell, shop, shopping, store cart, checkout, commerce, e-commerce,  automatic, blog category, categories, category, collection, collection of posts, group, groups, Post, post collection, post group, posts, smart, smart category, smart collection, smart group, smart grouping, smart taxonomy, Taxonomy
 wordpress ecommerce
 Requires at least: 3.0
-Tested up to: 3.8.2
-Stable tag: 1.0.4
+Tested up to: 3.9
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,7 +55,7 @@ In case you feel compelled to rate this plugin less than 5 stars - please do men
 
 == Frequently Asked Questions ==
 = Does this plugin work with newest WP version and also older versions? =
-Yes, this plugin works really fine up to Wordpress 3.8.2! It is also compatible with older Wordpress versions, down to 3.0.
+Yes, this plugin works really fine up to Wordpress 3.9! It is also compatible with older Wordpress versions, down to 3.0.
 
 = Does this plugin work with newest Woocommerce version and also older versions? =
 Yes, this plugin works really fine with Woocommerce 2.1.x! It is also compatible with older versions of woocommerce.
@@ -91,6 +91,9 @@ Not at this moment. But we are working on it.
 = 1.0.4 =
 * Bug Fix - Fixed matching of special characters in product title.
 
+= 1.0.5 =
+* Fixed Wordpress 3.9 compatibility issue.
+
 
 ==Upgrade Notice==
 
@@ -105,3 +108,6 @@ Not at this moment. But we are working on it.
 
 = 1.0.4 =
 * Bug Fix - Fixed matching of special characters in product title.
+
+= 1.0.5 =
+* Fixed Wordpress 3.9 compatibility issue.
