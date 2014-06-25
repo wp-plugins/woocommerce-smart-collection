@@ -69,7 +69,7 @@ Yes, this plugin works really fine with Woocommerce 2.1.x! It is also compatible
 No worries. Just go and create your product categories and come back and update your Woocommerce products. Voilà, there you have your smart collection of products. :)
 
 = Is the plugin compatible with importers? =
-There are tens and thousands of importers out there. We have made tried to make the plugin compatible with common importers like Wordpress Importers and WP All Import.
+There are tens and thousands of importers out there. We have tried to make the plugin compatible with common importers like Wordpress Importers and WP All Import.
 
 = Does this plugin support custom woocommerce taxonomies ? =
 Not at this moment. But we are working on it.
