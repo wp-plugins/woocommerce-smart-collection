@@ -4,15 +4,15 @@ Donate link: http://dualcube.com/
 Tags: woocommerce, shopping cart, sales, sell, shop, shopping, store cart, checkout, commerce, e-commerce,  automatic, blog category, categories, category, collection, collection of posts, group, groups, Post, post collection, post group, posts, smart, smart category, smart collection, smart group, smart grouping, smart taxonomy, Taxonomy
 wordpress ecommerce
 Requires at least: 3.0
-Tested up to: 3.9
-Stable tag: 1.0.5
+Tested up to: 3.9.1
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 A cool new Wordpress Woocommerce plugin that helps you to make smart collection of products.
 
 == Description ==
-The plugin provides an easy way to automatically assign your woocommerece products to relevant product categories. The plugin looks up your product title and tags, matches the key words with already available product categories and automatically assigns the product to those relevant product categories. 
+The plugin provides an easy way to automatically assign your woocommerce products to relevant product categories. The plugin looks up your product title, content, excerpt and tags, matches the key words with already available product categories and automatically assigns the product to those relevant product categories. 
 
 This plugin will be really helpful if your website has a huge number of products and product categories. The plugin minimizes the effort of manually assigning each and every product to relevant product categories. 
 
@@ -24,11 +24,14 @@ The plugin is fully compatible with the recent versions of Wordpress and Woocomm
 * Compatible with older Wordpress versions, down to 3.0.
 * Compatible with Woocommerce 2.0.x and 2.1.x.
 * Multilingual Support is included with the plugin and is fully compatible with WPML.
+* Support added for common importers like Wordpress Importer and WP All Import.
 
 = Configurable =
 Woocommerce Smart Collection is completely customizable. Among others, you may enable/disable smart collection(s), append with existing categories, choose whether to generate smart category associations from product titles and tags.
 
 From version 1.0.1 onwards, the settings can be overriden for individual products.
+
+From version 1.0.6 onwards, collections can also be made using product content or excerpt.
 
 = Upcoming Features =
 In the upcoming version we will be adding support for custom product taxonomies. So, keep a look out for the updated version. :)
@@ -39,6 +42,8 @@ There is a [Pro version](http://plugins.dualcube.com/product/woocommerce-smart-c
 Pro version will give you the power to group products depending upon certain conditions (e.g. all products that have "mobile" in their title and cost less than $100). When you create new products that match the conditions, they automatically get added to that group. 
 
 [Visit Pro version](http://plugins.dualcube.com/product/woocommerce-smart-collection-pro/ "Visit Pro version")
+
+Click to see the [Live Demo](http://demo.dualcube.com/woocommerce-smart-collection/wp-admin/ "Live Demo")
 
 
 = Feedback =
@@ -62,6 +67,9 @@ Yes, this plugin works really fine with Woocommerce 2.1.x! It is also compatible
 
 = I don't have any product categories created in Woocommerce. How do I assign my existing products using the plugin? =
 No worries. Just go and create your product categories and come back and update your Woocommerce products. Voilà, there you have your smart collection of products. :)
+
+= Is the plugin compatible with importers? =
+There are tens and thousands of importers out there. We have made tried to make the plugin compatible with common importers like Wordpress Importers and WP All Import.
 
 = Does this plugin support custom woocommerce taxonomies ? =
 Not at this moment. But we are working on it.
@@ -94,6 +102,9 @@ Not at this moment. But we are working on it.
 = 1.0.5 =
 * Fixed Wordpress 3.9 compatibility issue.
 
+= 1.0.6 =
+* Added support for importers. Feature Enhancement - create collections using product content and excerpt.
+
 
 ==Upgrade Notice==
 
@@ -111,3 +122,6 @@ Not at this moment. But we are working on it.
 
 = 1.0.5 =
 * Fixed Wordpress 3.9 compatibility issue.
+
+= 1.0.6 =
+* Added support for importers. Feature Enhancement - create collections using product content and excerpt.

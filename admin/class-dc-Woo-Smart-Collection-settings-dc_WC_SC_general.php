@@ -30,6 +30,8 @@ class DC_Woo_Smart_Collection_Settings_Gneral {
                                                                                                            "is_enable" => array('title' => __('Enable Woo Smart Collection', $DC_Woo_Smart_Collection->text_domain), 'type' => 'checkbox', 'id' => 'is_enable', 'label_for' => 'is_enable', 'name' => 'is_enable', 'value' => 'Enable'),
                                                                                                            "is_append" => array('title' => __('Append with existing smart product categories', $DC_Woo_Smart_Collection->text_domain), 'type' => 'checkbox', 'id' => 'is_append', 'label_for' => 'is_append', 'name' => 'is_append', 'value' => 'Append', 'desc' => __('If unchecked will replace existing smart product categories', $DC_Woo_Smart_Collection->text_domain)),
                                                                                                            "is_title" => array('title' => __('Generate Product Smart Collection from Product Title', $DC_Woo_Smart_Collection->text_domain), 'type' => 'checkbox', 'id' => 'is_title', 'label_for' => 'is_title', 'name' => 'is_title', 'value' => 'Title'),
+                                                                                                           "is_excerpt" => array('title' => __('Generate Smart Category from Post Excerpt', $DC_Woo_Smart_Collection->text_domain), 'type' => 'checkbox', 'id' => 'is_excerpt', 'label_for' => 'is_excerpt', 'name' => 'is_excerpt', 'value' => 'Excerpt'),
+                                                                                                           "is_content" => array('title' => __('Generate Smart Category from Post Content', $DC_Woo_Smart_Collection->text_domain), 'type' => 'checkbox', 'id' => 'is_content', 'label_for' => 'is_content', 'name' => 'is_content', 'value' => 'Content'),
                                                                                                            "is_tag" => array('title' => __('Generate Product Smart Collection from Product Tags', $DC_Woo_Smart_Collection->text_domain), 'type' => 'checkbox', 'id' => 'is_tag', 'label_for' => 'is_tag', 'name' => 'is_tag', 'value' => 'Tag')
                                                                                                            )
                                                                                          )
@@ -58,6 +60,12 @@ class DC_Woo_Smart_Collection_Settings_Gneral {
     
     if( isset( $input['is_title'] ) )
       $new_input['is_title'] = sanitize_text_field( $input['is_title'] );
+    
+    if( isset( $input['is_excerpt'] ) )
+      $new_input['is_excerpt'] = sanitize_text_field( $input['is_excerpt'] );
+    
+    if( isset( $input['is_content'] ) )
+      $new_input['is_content'] = sanitize_text_field( $input['is_content'] );
     
     if( isset( $input['is_tag'] ) )
       $new_input['is_tag'] = sanitize_text_field( $input['is_tag'] );

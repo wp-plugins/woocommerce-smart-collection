@@ -11,8 +11,14 @@ class DC_Woo_Smart_Collection_Admin {
 		
 		add_action( 'add_meta_boxes', array(&$this, 'add_custom_meta_boxes') );
 		
-		add_action( 'save_post', array(&$this, 'assign_woo_smart_collection') );
-
+		add_action( 'save_post', array(&$this, 'assign_woo_smart_collection'), 20, 1 );
+		
+		// Add support for Wordpress Importer
+		add_action( 'wp_import_set_post_terms', array(&$this, 'do_smart_collection_after_wp_import_set_post_terms'), 10, 4);
+		
+		// Add support for WP All Import
+		add_action( 'pmxi_saved_post', array(&$this, 'do_smart_collection_after_pmxi_saved_post'), 10, 1);
+		
 		$this->load_class('settings');
 		$this->settings = new DC_Woo_Smart_Collection_Settings();
 	}
@@ -45,6 +51,8 @@ class DC_Woo_Smart_Collection_Admin {
                              "is_enable" => array('label' => __('Enable Smart Category', $DC_Woo_Smart_Collection->text_domain), 'type' => 'checkbox', 'name' => 'smart_cat_settings[is_enable]', 'value' => 'Enable', 'dfvalue' => $smart_cat_settings['is_enable']),
                              "is_append" => array('label' => __('Append with existing smart categories', $DC_Woo_Smart_Collection->text_domain), 'type' => 'checkbox', 'name' => 'smart_cat_settings[is_append]', 'value' => 'Append', 'dfvalue' => $smart_cat_settings['is_append'], 'hints' => __('If unchecked will replace existing smart categories', $DC_Woo_Smart_Collection->text_domain)),
                              "is_title" => array('label' => __('Generate Smart Category from Post Title', $DC_Woo_Smart_Collection->text_domain), 'type' => 'checkbox', 'name' => 'smart_cat_settings[is_title]', 'value' => 'Title', 'dfvalue' => $smart_cat_settings['is_title']),
+                             "is_excerpt" => array('label' => __('Generate Smart Category from Post Excerpt', $DC_Woo_Smart_Collection->text_domain), 'type' => 'checkbox', 'name' => 'smart_cat_settings[is_excerpt]', 'value' => 'Excerpt', 'dfvalue' => $smart_cat_settings['is_excerpt']),
+                             "is_content" => array('label' => __('Generate Smart Category from Post Content', $DC_Woo_Smart_Collection->text_domain), 'type' => 'checkbox', 'name' => 'smart_cat_settings[is_content]', 'value' => 'Content', 'dfvalue' => $smart_cat_settings['is_content']),
                              "is_tag" => array('label' => __('Generate Smart Category from Post Tags', $DC_Woo_Smart_Collection->text_domain), 'type' => 'checkbox', 'name' => 'smart_cat_settings[is_tag]', 'value' => 'Tag', 'dfvalue' => $smart_cat_settings['is_tag'])
                              );
     
@@ -63,7 +71,7 @@ class DC_Woo_Smart_Collection_Admin {
 	  // If this is just a revision, don't do anything
     if ( wp_is_post_revision( $product_id ) )
       return $product_id;
-  
+    
     if( get_post_type($product_id) != 'product' )
       return $product_id;
     
@@ -82,7 +90,10 @@ class DC_Woo_Smart_Collection_Admin {
     if(!$smart_cat_settings['is_enable'])
       return $product_id;
     
-    $product_title = get_the_title( $product_id );
+    $product_obj = get_post( $product_id );
+    $product_title = $product_obj->post_title;
+    $product_excerpt = $product_obj->post_excerpt;
+    $product_content = $product_obj->post_content;
     $product_tags = wp_get_object_terms( $product_id, 'product_tag', array('fields' => 'all') );
     
     $smart_cats = array();
@@ -95,6 +106,20 @@ class DC_Woo_Smart_Collection_Admin {
         // Decide Samrt Cats from Post Title
         if($smart_cat_settings['is_title']) {
           if(strpos(strtolower($product_title), wptexturize(strtolower($product_category->name))) !== false) {
+            $smart_cats[] = $product_category->term_id;
+          }
+        }
+        
+        // Choose Samrt Cats from Post Excerpt
+        if($smart_cat_settings['is_excerpt']) {
+          if(strpos(strtolower($product_excerpt), wptexturize(strtolower($product_category->name))) !== false) {
+            $smart_cats[] = $product_category->term_id;
+          }
+        }
+        
+        // Choose Samrt Cats from Post Content
+        if($smart_cat_settings['is_content']) {
+          if(strpos(strtolower($product_content), wptexturize(strtolower($product_category->name))) !== false) {
             $smart_cats[] = $product_category->term_id;
           }
         }
@@ -124,12 +149,33 @@ class DC_Woo_Smart_Collection_Admin {
       }
        
       $smart_cats = array_unique( $smart_cats );
+      
       wp_set_object_terms( $product_id, $smart_cats, 'product_cat', true );
         
       update_post_meta($product_id, '_smart_cats', $smart_cats);
     }
     
     return $product_id;
+	}
+	
+	/**
+	 * Add support for wordpress importer
+	 */
+	function do_smart_collection_after_wp_import_set_post_terms($tt_ids, $ids, $tax, $post_id) {
+	  global $DC_Woo_Smart_Collection;
+	  
+	  if($tax != 'product_cat') return;
+	  
+	  $this->assign_woo_smart_collection($post_id);
+	}
+	
+	/**
+	 * Add support for WP All Import
+	 */
+	function do_smart_collection_after_pmxi_saved_post($post_id) {
+	  global $DC_Woo_Smart_Collection;
+	  
+	  $this->assign_woo_smart_collection($post_id);
 	}
 
 	function load_class($class_name = '') {
@@ -166,9 +212,6 @@ class DC_Woo_Smart_Collection_Admin {
 		// Enqueue admin script and stylesheet from here
 		if (in_array( $screen->id, array( 'toplevel_page_dc-WC-SC-setting-admin' ))) :   
 		  $DC_Woo_Smart_Collection->library->load_qtip_lib();
-		  $DC_Woo_Smart_Collection->library->load_upload_lib();
-		  $DC_Woo_Smart_Collection->library->load_colorpicker_lib();
-		  $DC_Woo_Smart_Collection->library->load_datepicker_lib();
 		  wp_enqueue_script('admin_js', $DC_Woo_Smart_Collection->plugin_url.'assets/admin/js/admin.js', array('jquery'), $DC_Woo_Smart_Collection->version, true);
 		  wp_enqueue_style('admin_css',  $DC_Woo_Smart_Collection->plugin_url.'assets/admin/css/admin.css', array(), $DC_Woo_Smart_Collection->version);
 	  endif;
