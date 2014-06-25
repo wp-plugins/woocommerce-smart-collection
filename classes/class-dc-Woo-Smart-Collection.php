@@ -84,7 +84,7 @@ class DC_Woo_Smart_Collection {
   function activate_dc_Woo_Smart_Collection() {
     global $DC_Woo_Smart_Collection;
     
-    if(!get_option('dc_dc_WC_SC_general_settings_name')) update_option('dc_dc_WC_SC_general_settings_name', array("is_enable" => "Enable", "is_title" => "Title", "is_tag" => "Tag"));
+    if(!get_option('dc_dc_WC_SC_general_settings_name')) update_option('dc_dc_WC_SC_general_settings_name', array("is_enable" => "Enable", "is_title" => "Title", "is_excerpt" => "Excerpt", "is_content" => "Content", "is_tag" => "Tag"));
     update_option( 'dc_Woo_Smart_Collection_installed', 1 );
   }
   
