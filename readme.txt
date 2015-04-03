@@ -1,11 +1,11 @@
 === WooCommerce Smart Collection ===
-Contributors: Dualcube
+Contributors: Dualcube, arimghosh
 Donate link: http://dualcube.com/
 Tags: woocommerce, shopping cart, sales, sell, shop, shopping, store cart, checkout, commerce, e-commerce,  automatic, blog category, categories, category, collection, collection of posts, group, groups, Post, post collection, post group, posts, smart, smart category, smart collection, smart group, smart grouping, smart taxonomy, Taxonomy
 wordpress ecommerce
 Requires at least: 3.0
-Tested up to: 3.9.1
-Stable tag: 1.0.6
+Tested up to: 4.1.1
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,7 +22,7 @@ For example, if you create a product with a title "IPhone 5S Reviews" and you ha
 The plugin is fully compatible with the recent versions of Wordpress and Woocommerce.
 
 * Compatible with older Wordpress versions, down to 3.0.
-* Compatible with Woocommerce 2.0.x and 2.1.x.
+* Compatible with Woocommerce 2.0.x, 2.1.x, 2.2.x and 2.3.x
 * Multilingual Support is included with the plugin and is fully compatible with WPML.
 * Support added for common importers like Wordpress Importer and WP All Import.
 
@@ -105,6 +105,9 @@ Not at this moment. But we are working on it.
 = 1.0.6 =
 * Added support for importers. Feature Enhancement - create collections using product content and excerpt.
 
+= 1.0.7 =
+* Fixed Wordpress 4.x and WooCommerce 2.3.x compatibility issue.
+
 
 ==Upgrade Notice==
 
@@ -125,3 +128,6 @@ Not at this moment. But we are working on it.
 
 = 1.0.6 =
 * Added support for importers. Feature Enhancement - create collections using product content and excerpt.
+
+= 1.0.7 =
+* Fixed Wordpress 4.x and WooCommerce 2.3.x compatibility issue.
