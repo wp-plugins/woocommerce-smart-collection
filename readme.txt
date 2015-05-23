@@ -43,7 +43,7 @@ Pro version will give you the power to group products depending upon certain con
 
 [Visit Pro version](http://plugins.dualcube.com/product/woocommerce-smart-collection-pro/ "Visit Pro version")
 
-Click to see the [Live Demo](http://demo.dualcube.com/wordpress/plugins/woocommerce-smart-collection/wp-admin "Live Demo")
+Click to see the [Live Demo](http://demo.dualcube.com/wordpress/plugins/woocommerce-smart-collection/wp-admin/ "Live Demo")
 
 
 = Feedback =
