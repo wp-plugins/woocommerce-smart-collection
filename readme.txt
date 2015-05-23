@@ -108,6 +108,9 @@ Not at this moment. But we are working on it.
 = 1.0.7 =
 * Fixed Wordpress 4.x and WooCommerce 2.3.x compatibility issue.
 
+= 1.0.8 =
+* Fixed to support latest woocommerce.
+
 
 ==Upgrade Notice==
 
@@ -131,3 +134,6 @@ Not at this moment. But we are working on it.
 
 = 1.0.7 =
 * Fixed Wordpress 4.x and WooCommerce 2.3.x compatibility issue.
+
+= 1.0.8 =
+* Fixed to support latest woocommerce.
