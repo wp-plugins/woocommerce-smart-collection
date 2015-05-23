@@ -4,7 +4,7 @@ Plugin Name: WooCommerce Smart Collection
 Plugin URI: http://dualcube.com
 Description: A cool new Wordpress Woocommerce plugin that helps you to make smart collection of products.
 Author: Dualcube, arimghosh
-Version: 1.0.7
+Version: 1.0.8
 Author URI: http://dualcube.com
 */
 
